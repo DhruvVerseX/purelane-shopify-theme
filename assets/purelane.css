@@ -1,0 +1,409 @@
+/* Purelane Hero Section Styles */
+
+/* Scope all styles to sections with data-section-id to avoid leaking */
+section[data-section-id] .purelane-hero {
+  --ink: #17102b;
+  --deep: #241a3d;
+  --brand: #4b3a8f;
+  --brand-lt: #6b55b8;
+  --paper: #ece6f7;
+  --paper-2: rgba(236,230,247,0.74);
+  --paper-3: rgba(236,230,247,0.52);
+  --accent: #f0a03c;
+  --accent-2: #c9761d;
+  --surface: #faf7fd;
+  --g-bg: linear-gradient(158deg, rgba(236,230,247,0.15) 0%, rgba(75,58,143,0.20) 58%, rgba(23,16,43,0.28));
+  --g-line: rgba(236,230,247,0.22);
+  --g-shadow: 0 26px 74px rgba(18,12,34,0.44);
+  --g-inset: inset 0 1px 0 rgba(255,255,255,0.24);
+  --r: 26px;
+  --r-sm: 16px;
+  --maxw: 1180px;
+  --sec-y: 34px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding: 150px 0 var(--sec-y);
+  background: var(--g-bg);
+}
+
+/* Overlay */
+section[data-section-id] .purelane-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(102deg, rgba(1,45,42,0.68) 0%, rgba(1,45,42,0.40) 30%, rgba(1,45,42,0.10) 52%, transparent 66%);
+}
+
+@media (max-width: 900px) {
+  section[data-section-id] .purelane-hero::before {
+    background: linear-gradient(180deg, rgba(1,45,42,0.44) 0%, rgba(1,45,42,0.22) 34%, rgba(1,40,38,0.60) 100%);
+  }
+  section[data-section-id] .purelane-hero {
+    align-items: flex-end;
+    padding-top: 132px;
+  }
+}
+
+/* Wrapper */
+section[data-section-id] .purelane-hero__wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* Content */
+section[data-section-id] .purelane-hero__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+/* Grid */
+section[data-section-id] .purelane-hero__grid {
+  flex: 1 1 100%;
+  display: flex;
+  gap: 2rem;
+}
+
+/* Copy */
+section[data-section-id] .purelane-hero__copy {
+  flex: 1 1 400px;
+  max-width: 600px;
+}
+
+/* Heading */
+section[data-section-id] .purelane-hero__heading {
+  font-family: 'Outfit', system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.018em;
+  font-weight: 800;
+  line-height: 0.87;
+  color: var(--surface);
+  margin-bottom: 20px;
+  text-shadow: 0 6px 40px rgba(2,20,19,0.55);
+  font-size: clamp(48px, 8.6vw, 112px);
+}
+
+section[data-section-id] .purelane-hero__highlight {
+  color: var(--accent);
+}
+
+/* Description */
+section[data-section-id] .purelane-hero__description {
+  font-size: clamp(15px, 1.35vw, 17.5px);
+  color: var(--paper-2);
+  max-width: 44ch;
+  line-height: 1.62;
+}
+
+/* Rule */
+section[data-section-id] .rule {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 20px;
+  max-width: 270px;
+}
+
+section[data-section-id] .rule i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(236,230,247,0.44), transparent);
+}
+
+section[data-section-id] .rule svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+
+/* CTA */
+section[data-section-id] .purelane-hero__cta {
+  display: flex;
+  gap: 11px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+section[data-section-id] .purelane-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: 0.35s var(--ease);
+  white-space: nowrap;
+}
+
+section[data-section-id] .purelane-hero__btn.btn--primary {
+  background: linear-gradient(135deg, var(--accent-2), #5d8d1c);
+  color: #08211a;
+  box-shadow: 0 12px 30px rgba(201,118,29,0.34), inset 0 1px 0 rgba(255,255,255,0.34);
+}
+
+section[data-section-id] .purelane-hero__btn.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(201,118,29,0.44), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+section[data-section-id] .purelane-hero__btn.btn--secondary {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.30);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--surface);
+}
+
+section[data-section-id] .purelane-hero__btn.btn--secondary:hover {
+  background: rgba(236,230,247,0.18);
+  transform: translateY(-2px);
+}
+
+/* Product image */
+section[data-section-id] .purelane-hero__product-wrapper {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+section[data-section-id] .purelane-hero__product {
+  position: absolute;
+  right: 2%;
+  bottom: 28px;
+  width: min(50vw, 560px);
+  z-index: 2;
+  filter: drop-shadow(0 34px 54px rgba(2,20,19,0.6));
+}
+
+@media (max-width: 1200px) {
+  section[data-section-id] .purelane-hero__product {
+    width: min(44vw, 440px);
+    right: 3%;
+  }
+  section[data-section-id] .purelane-hero__copy {
+    max-width: 470px;
+  }
+}
+
+@media (max-width: 900px) {
+  section[data-section-id] .purelane-hero__product {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(88vw, 420px);
+    margin: 20px auto 0;
+  }
+}
+
+/* Price card */
+section[data-section-id] .purelane-hero__price-card {
+  position: absolute;
+  left: 0;
+  bottom: 2%;
+  z-index: 6;
+  padding: 11px 14px 12px;
+  border-radius: 16px;
+  max-width: 52%;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s var(--ease) 0.62s, transform 0.8s var(--ease) 0.62s;
+  background: rgba(240,160,60,0.20);
+  border: 1px solid rgba(240,160,60,0.38);
+}
+
+section[data-section-id] .purelane-hero__product:hover .purelane-hero__price-card,
+section[data-section-id] .purelane-hero__product:focus-within .purelane-hero__price-card {
+  opacity: 1;
+  transform: none;
+}
+
+section[data-section-id] .purelane-hero__price-card .lbl {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+section[data-section-id] .purelane-hero__price-card .val {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+section[data-section-id] .purelane-hero__price-card .val strong {
+  font-family: 'Outfit', sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--surface);
+  line-height: 1;
+}
+
+section[data-section-id] .purelane-hero__price-card .val s {
+  font-size: 12px;
+  color: var(--paper-3);
+}
+
+section[data-section-id] .purelane-hero__price-card .cut {
+  display: inline-block;
+  margin-top: 7px;
+  font-size: 8.4px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(240,160,60,0.20);
+  border: 1px solid rgba(240,160,60,0.38);
+  color: var(--accent);
+}
+
+/* Promise cards */
+section[data-section-id] .purelane-hero__promises {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+section[data-section-id] .purelane-hero__promise {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r-sm);
+  padding: 1rem;
+  flex: 1 1 200px;
+}
+
+section[data-section-id] .puremene-hero__promise-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+section[data-section-id] .puremene-hero__promise-heading {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--surface);
+  margin: 0;
+}
+
+section[data-section-id] .puremene-hero__promise-description {
+  font-size: 0.875rem;
+  color: var(--paper-2);
+  line-height: 1.5;
+}
+
+/* Badges (desktop) */
+section[data-section-id] .badges {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 96px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: 20px;
+}
+
+section[data-section-id] .badges .badge {
+  text-align: center;
+  padding: 11px 4px;
+}
+
+section[data-section-id] .badges .badge + .badge {
+  border-top: 1px solid rgba(236,230,247,0.14);
+}
+
+section[data-section-id] .badges .badge .bi {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  color: var(--accent);
+}
+
+section[data-section-id] .badges .badge .bi svg {
+  width: 19px;
+  height: 19px;
+}
+
+section[data-section-id] .badges .badge span {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--paper-2);
+  line-height: 1.34;
+}
+
+/* Mobile badge strip */
+section[data-section-id] .badgestrip {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+section[data-section-id] .badgestrip div {
+  flex: 1;
+  text-align: center;
+  padding: 11px 6px;
+  border-radius: 14px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-2);
+  line-height: 1.3;
+}
+
+section[data-section-id] .badgestrip svg {
+  width: 18px;
+  height: 18px;
+  margin: 0 auto 6px;
+  color: var(--accent);
+}
+
+@media (min-width: 901px) {
+  section[data-section-id] .badgestrip {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  section[data-section-id] .badges {
+    display: none;
+  }
+}

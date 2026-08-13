@@ -1,0 +1,295 @@
+{% comment %}
+  Purelane Hero Section
+{% endcomment %}
+
+<section
+  data-section-id="{{ section.id }}"
+  class="purelane-hero"
+  data-section-type="purelane-hero"
+>
+  <div class="purelane-hero__wrapper">
+    {/* Background effect - we'll create with CSS */}
+
+    <div class="purelane-hero__content">
+      <div class="purelane-hero__grid">
+        {/* Heading and description */}
+        <div class="purelane-hero__copy">
+          {%- if section.settings.heading != blank -%}
+            {%- assign highlighted_word = section.settings.highlighted_word -%}
+            {%- if highlighted_word != blank -%}
+              {%- assign heading_parts = section.settings.heading | split: highlighted_word -%}
+              {%- if heading_parts.size == 2 -%}
+                <h1 class="purelane-hero__heading">
+                  {{ heading_parts[0 ] }}<span class="purelane-hero__highlight">{{ highlighted_word }}</span>{{ heading_parts[1 ] }}
+                </h1>
+              {%- else -%}
+                <h1 class="purelane-hero__heading">{{ section.settings.heading }}</h1>
+              {%- endif -%}
+            {%- else -%}
+              <h1 class="purelane-hero__heading">{{ section.settings.heading }}</h1>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if section.settings.description != blank -%}
+            <p class="purelane-hero__description">{{ section.settings.description }}</p>
+          {%- endif -%}
+
+          {%- unless section.settings.primary_button_label == blank and section.settings.secondary_button_label == blank -%}
+            <div class="purelane-hero__cta">
+              {%- if section.settings.primary_button_label != blank -%}
+                <a href="{{ section.settings.primary_button_link }}" class="btn btn--primary purelane-hero__btn">
+                  {{ section.settings.primary_button_label }}
+                  {%- if section.settings.primary_button_show_arrow -%}
+                    <svg class="icon icon-arrow" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+              {%- if section.settings.secondary_button_label != blank -%}
+                <a href="{{ section.settings.secondary_button_link }}" class="btn btn--secondary purelane-hero__btn">
+                  {{ section.settings.secondary_button_label }}
+                  {%- if section.settings.secondary_button_show_arrow -%}
+                    <svg class="icon icon-arrow" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endunless -%}
+        </div>
+
+        {/* Promise cards */}
+        {%- if section.blocks.promise.size > 0 -%}
+          <div class="purelane-hero__promises">
+            {%- for promise_block in section.blocks.promise -%}
+              <div class="purelane-hero__promise">
+                {%- if promise_block.settings.icon != blank -%}
+                  <div class="purelane-hero__promise-icon">
+                    {{ promise_block.settings.icon | image_url: width: 24, height: 24 | image_tag: width: 24, height: 24, class: 'icon' }}
+                  </div>
+                {%- endif -%}
+                <div class="purelane-hero__promise-content">
+                  {%- if promise_block.settings.heading != blank -%}
+                    <h3 class="purelane-hero__promise-heading">{{ promise_block.settings.heading }}</h3>
+                  {%- endif -%}
+                  {%- if promise_block.settings.description != blank -%}
+                    <p class="purelane-hero__promise-description">{{ promise_block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {/* Product and price card */}
+        <div class="purelane-hero__product-wrapper">
+          {%- assign product = section.settings.product -%}
+          {%- if product == blank -%}
+            {%- assign fallback_image = section.settings.fallback_image | default: section.settings.fallback_image -%}
+            {%- if fallback_image != blank -%}
+              <div class="purelane-hero__product">
+                {{ fallback_image | image_url: width: 800, height: 800 | image_tag: width: 800, height: 800, class: 'purelane-hero__product-image' }}
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            {%- assign featured_image = product.featured_image | default: product.first_available_variant.featured_image -%}
+            <div class="purelane-hero__product">
+              {%- if featured_image != blank -%}
+                {{ featured_image | image_url: width: 800, height: 800 | image_tag: width: 800, height: 800, class: 'purelane-hero__product-image' }}
+              {%- else -%}
+                {%- if section.settings.fallback_image != blank -%}
+                  {{ section.settings.fallback_image | image_url: width: 800, height: 800 | image_tag: width: 800, height: 800, class: 'purelane-hero__product-image' }}
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+
+            {/* Price card */}
+            {%- if product.price_varies == false and product.available -%}
+              {%- assign compare_at_price = product.compare_at_price -%}
+              {%- assign price = product.price -%}
+              <div class="purelane-hero__price-card">
+                {%- if compare_at_price > price -%}
+                  <span class="purelane-hero__price-card__sale">Sale</span>
+                {%- endif -%}
+                <span class="purelane-hero__price-card__price">
+                  {{ price | money }}
+                </span>
+                {%- if compare_at_price > price -%}
+                  <span class="purelane-hero__price-card__compare-at">
+                    {{ compare_at_price | money }}
+                  </span>
+                  <span class="purelane-hero__price-card__save">
+                    {%- assign price_diff = compare_at_price | minus: price -%}
+                    {%- assign price_diff_percent = price_diff | times: 100 | divided_by: compare_at_price | round: 0 -%}
+                    {{ price_diff_percent }}%
+                  </span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Hero",
+  "tag": "section",
+  "class": "purelane-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Clean / That / Lasts",
+      "info": "Enter the full heading text. The highlighted word will be styled separately."
+    },
+    {
+      "type": "text",
+      "id": "highlighted_word",
+      "label": "Highlighted Word",
+      "default": "Lasts",
+      "info": "Enter the word from the heading that should be highlighted (e.g., 'Lasts')."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Plant-based homecare for kitchen, laundry, bathroom and hands. Free shipping across India.",
+      "info": "Supporting description text."
+    },
+    {
+      "type": "header",
+      "content": "Primary Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Button Label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "checkbox",
+      "id": "primary_button_show_arrow",
+      "label": "Show Arrow Icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Secondary Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Button Label",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Button Link",
+      "default": ""
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_button_show_arrow",
+      "label": "Show Arrow Icon",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback Image",
+      "info": "Image to display when no product is selected or the product has no image."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Product Promise",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Optional icon to display (e.g., a checkmark)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Plant-based"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Made from 100% natural ingredients."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Hero",
+      "category": "Image",
+      "settings": {
+        "heading": "Clean / That / Lasts",
+        "highlighted_word": "Lasts",
+        "description": "Plant-based homecare for kitchen, laundry, bathroom and hands. Free shipping across India.",
+        "primary_button_label": "Shop now",
+        "primary_button_link": "/",
+        "primary_button_show_arrow": true,
+        "secondary_button_label": "How it works",
+        "secondary_button_link": "/pages/how-it-works",
+        "secondary_button_show_arrow": false
+      },
+      "blocks": [
+        {
+          "type": "promise",
+          "settings": {
+            "heading": "Plant-based",
+            "description": "Made from 100% natural ingredients."
+          }
+        },
+        {
+          "type": "promise",
+          "settings": {
+            "heading": "Eco-friendly",
+            "description": "Biodegradable and zero waste."
+          }
+        },
+        {
+          "type": "promise",
+          "settings": {
+            "heading": "Effective",
+            "description": "Powerful cleaning without harsh chemicals."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

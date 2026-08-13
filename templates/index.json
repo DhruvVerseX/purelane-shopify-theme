@@ -1,5 +1,44 @@
 {
   "sections": {
+    "purelane_hero": {
+      "type": "purelane-hero",
+      "blocks": {
+        "promise_1": {
+          "type": "promise",
+          "settings": {
+            "heading": "Plant-based",
+            "description": "Made from 100% natural ingredients."
+          }
+        },
+        "promise_2": {
+          "type": "promise",
+          "settings": {
+            "heading": "Eco-friendly",
+            "description": "Biodegradable and zero waste."
+          }
+        },
+        "promise_3": {
+          "type": "promise",
+          "settings": {
+            "heading": "Effective",
+            "description": "Powerful cleaning without harsh chemicals."
+          }
+        }
+      },
+      "settings": {
+        "heading": "Clean / That / Lasts",
+        "highlighted_word": "Lasts",
+        "description": "Plant-based homecare for kitchen, laundry, bathroom and hands. Free shipping across India.",
+        "primary_button_label": "Shop now",
+        "primary_button_link": "/",
+        "primary_button_show_arrow": true,
+        "secondary_button_label": "How it works",
+        "secondary_button_link": "/pages/how-it-works",
+        "secondary_button_show_arrow": false,
+        "product": "",
+        "fallback_image": ""
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -69,6 +108,7 @@
     }
   },
   "order": [
+    "purelane_hero",
     "image_banner",
     "featured_collection"
   ]

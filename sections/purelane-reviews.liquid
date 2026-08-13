@@ -1,130 +1,61 @@
+<section id="reviews" class="sec revband purelane-reviews" data-section-id="{{ section.id }}" data-scene="1">
+  <div class="wrap">
+    <div class="revhead rv">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <span class="agg">
+        <span class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <b>{{ section.settings.rating_text }}</b> from {{ section.settings.review_count }} reviews
+      </span>
+      <span class="agg">Loved by <b>{{ section.settings.homes_count }}</b> homes</span>
+    </div>
+  </div>
+  <div class="revrail rv" aria-label="Customer reviews">
+    <div class="revtrack">
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          <article class="glass-2 rcard" {{ block.shopify_attributes }}>
+            <div class="st">
+              {%- for star in (1..block.settings.rating) -%}&#9733;{%- endfor -%}
+            </div>
+            <h5>{{ block.settings.heading }}</h5>
+            <p>{{ block.settings.body }}</p>
+            <div class="who">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <b>{{ block.settings.reviewer_name }}</b>
+              <span>&middot; {{ block.settings.reviewer_location }}</span>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
 {% schema %}
 {
-  "name": "t:sections.purelane-reviews.name",
+  "name": "Purelane Reviews",
   "tag": "section",
   "class": "purelane-reviews-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "kicker",
-      "default": "That’s what they said",
-      "label": "t:sections.purelane-reviews.settings.kicker.label",
-      "info": "t:sections.purelane-reviews.settings.kicker.info"
-    },
-    {
-      "type": "text",
-      "id": "rating_text",
-      "default": "4.8",
-      "label": "t:sections.purelane-reviews.settings.rating_text.label",
-      "info": "t:sections.purelane-reviews.settings.rating_text.info"
-    },
-    {
-      "type": "text",
-      "id": "review_count",
-      "default": "8,000+",
-      "label": "t:sections.purelane-reviews.settings.review_count.label",
-      "info": "t:sections.purelane-reviews.settings.review_count.info"
-    },
-    {
-      "type": "text",
-      "id": "homes_count",
-      "default": "12 lakh+",
-      "label": "t:sections.purelane-reviews.settings.homes_count.label",
-      "info": "t:sections.purelane-reviews.settings.homes_count.info"
-    }
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "That's what they said" },
+    { "type": "text", "id": "rating_text", "label": "Rating", "default": "4.8" },
+    { "type": "text", "id": "review_count", "label": "Review count", "default": "8,000+" },
+    { "type": "text", "id": "homes_count", "label": "Homes count", "default": "12 lakh+" }
   ],
   "blocks": [
     {
       "type": "review",
-      "name": "t:sections.purelane-reviews.blocks.review.name",
+      "name": "Review",
       "limit": 10,
       "settings": [
-        {
-          "type": "range",
-          "id": "rating",
-          "default": 5,
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "label": "t:sections.purelane-reviews.blocks.review.settings.rating.label",
-          "info": "t:sections.purelane-reviews.blocks.review.settings.rating.info"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Works like a charm",
-          "label": "t:sections.purelane-reviews.blocks.review.settings.heading.label"
-        },
-        {
-          "type": "textarea",
-          "id": "body",
-          "default": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
-          "label": "t:sections.purelane-reviews.blocks.review.settings.body.label"
-        },
-        {
-          "type": "text",
-          "id": "reviewer_name",
-          "default": "Anita",
-          "label": "t:sections.purelane-reviews.blocks.review.settings.reviewer_name.label"
-        },
-        {
-          "type": "text",
-          "id": "reviewer_location",
-          "default": "Laundry detergent",
-          "label": "t:sections.purelane-reviews.blocks.review.settings.reviewer_location.label"
-        }
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "default": 5, "label": "Rating" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Works like a charm" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better." },
+        { "type": "text", "id": "reviewer_name", "label": "Reviewer name", "default": "Anita" },
+        { "type": "text", "id": "reviewer_location", "label": "Product", "default": "Laundry detergent" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "t:sections.purelane-reviews.presets.name",
-      "category": "t:sections.purelane-reviews.presets.category",
-      "blocks": [
-        {
-          "type": "review"
-        },
-        {
-          "type": "review"
-        },
-        {
-          "type": "review"
-        }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Purelane Reviews", "blocks": [{ "type": "review" }, { "type": "review" }, { "type": "review" }] }]
 }
 {% endschema %}
-{% stylesheet %}
-{% endstylesheet %}
-{% javascript %}
-{% endjavascript %}
-<div class="purelane-reviews page-width">
-  <div class="purelane-reviews__wrapper">
-    <div class="purelane-reviews__header">
-      <span class="purelane-reviews__kicker">{{ section.settings.kicker }}</span>
-      <div class="purelane-reviews__agg">
-        <span class="purelane-reviews__star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <b>{{ section.settings.rating_text }}</b> from {{ section.settings.review_count }} reviews
-      </div>
-      <div class="purelane-reviews__agg">
-        Loved by <b>{{ section.settings.homes_count }}</b> homes
-      </div>
-    </div>
-  </div>
-  <div class="purelane-reviews__rail" aria-label="Customer reviews">
-    <div class="purelane-reviews__track">
-      {% for block in section.blocks %}
-      <div class="purelane-reviews__review glass-2">
-        <div class="purelane-reviews__star">{{ block.settings.rating | times: '&#9733;' | join: '' }}</div>
-        <h5 class="purelane-reviews__heading">{{ block.settings.heading }}</h5>
-        <p class="purelane-reviews__body">{{ block.settings.body }}</p>
-        <div class="purelane-reviews__who">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-          <b>{{ block.settings.reviewer_name }}</b><span>&middot; {{ block.settings.reviewer_location }}</span>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>

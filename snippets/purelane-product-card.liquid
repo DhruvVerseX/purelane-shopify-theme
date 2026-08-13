@@ -1,0 +1,44 @@
+{%- liquid
+  assign card_product = product
+  if card_product == blank
+    assign card_product = product_ref
+  endif
+-%}
+
+<article class="glass card purelane-product-card" {% if block_attributes %}{{ block_attributes }}{% endif %}>
+  <div class="shot">
+    {%- if badge != blank -%}
+      <span class="pill">{{ badge }}</span>
+    {%- endif -%}
+    <a href="{{ card_product.url }}" class="purelane-product-card__link">
+      {%- if card_product.featured_image != blank -%}
+        {{ card_product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: card_product.title, class: 'purelane-product-card__img' }}
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+  </div>
+  <h4><a href="{{ card_product.url }}">{{ card_product.title }}</a></h4>
+  <div class="rate">
+    <b>&#9733; {{ rating | default: '4.8' }}</b>
+    {%- if review_count != blank -%}
+      &middot; {{ review_count }} reviews
+    {%- endif -%}
+  </div>
+  <div class="pr">
+    <strong>{{ card_product.price | money }}</strong>
+    {%- if card_product.compare_at_price > card_product.price -%}
+      <s>{{ card_product.compare_at_price | money }}</s>
+      {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price | round -%}
+      <em>{{ savings }}% off</em>
+    {%- endif -%}
+  </div>
+  {%- if card_product.available -%}
+    <form method="post" action="{{ routes.cart_add_url }}" class="purelane-product-card__form">
+      <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn-ghost btn-sm" name="add">Add to cart</button>
+    </form>
+  {%- else -%}
+    <button type="button" class="btn btn-ghost btn-sm" disabled>Sold out</button>
+  {%- endif -%}
+</article>

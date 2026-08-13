@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
+  var root = document.body;
   if (!root.classList.contains("purelane-home")) {
     return;
   }
@@ -260,7 +260,18 @@
     menuToggle.addEventListener("click", function () {
       var expanded = menuToggle.getAttribute("aria-expanded") === "true";
       menuToggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-      mobileMenu.hidden = expanded;
+      if (expanded) {
+        mobileMenu.setAttribute("hidden", "");
+      } else {
+        mobileMenu.removeAttribute("hidden");
+      }
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mobileMenu.setAttribute("hidden", "");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
     });
   }
 

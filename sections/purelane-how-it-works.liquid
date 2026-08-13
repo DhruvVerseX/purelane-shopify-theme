@@ -1,0 +1,96 @@
+{% schema %}
+{
+  "name": "Purelane How It Works",
+  "tag": "section",
+  "class": "purelane-how-it-works-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Purelane How It Works",
+      "info": "Purelane How It Works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Less scrubbing",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Less scrubbing",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "default": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.",
+          "label": "Body"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane How It Works",
+      "category": "Purelane How It Works",
+      "blocks": [
+        {
+          "type": "pillar"
+        },
+        {
+          "type": "pillar"
+        },
+        {
+          "type": "pillar"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+<div class="purelane-how-it-works page-width">
+  <div class="purelane-how-it-works__wrapper">
+    {% if section.blocks.size > 0 %}
+    <div class="purelane-how-it-works__pillars">
+      {% for block in section.blocks %}
+      <article class="purelane-how-it-works__pillar glass pillar">
+        <span class="purelane-how-it-works__pi">
+          {% if block.settings.icon != blank %}
+            {{ block.settings.icon | image_url: width: 50 | image_tag: width: 50, height: 50, alt: block.settings.heading }}
+          {% else %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
+          {% endif %}
+        </span>
+        <h3 class="purelane-how-it-works__heading">{{ block.settings.heading }}</h3>
+        <p class="purelane-how-it-works__body">{{ block.settings.body }}</p>
+        {% if block.settings.link != blank %}
+        <a href="{{ block.settings.link.url }}" class="purelane-how-it-works__link btn btn-ghost btn-sm">{{ block.settings.link.title | default: 'Learn more' }}</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>

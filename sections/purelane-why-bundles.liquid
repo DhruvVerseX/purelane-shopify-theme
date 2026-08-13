@@ -1,0 +1,102 @@
+{% schema %}
+{
+  "name": "Purelane Why Bundles",
+  "tag": "section",
+  "class": "purelane-why-bundles-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Purelane Why Bundles",
+      "info": "Purelane Why Bundles"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Why bundles beat buying single",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Versus buying the same products separately</p><p>No calculators, no comparing carts</p><p>Products picked to work well together</p><p>Free shipping always</p>",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Save up to 45%",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "default": "Versus buying the same products separately",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Why Bundles",
+      "category": "Purelane Why Bundles",
+      "blocks": [
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+<div class="purelane-why-bundles page-width">
+  <div class="purelane-why-bundles__wrapper">
+    {% if section.settings.heading != blank %}
+    <div class="purelane-why-bundles__header">
+      <span class="purelane-why-bundles__kicker">The smarter way to shop</span>
+      <h2 class="purelane-why-bundles__heading">{{ section.settings.heading }}</h2>
+      {{ section.settings.subheading }}
+    </div>
+    {% endif %}
+    <div class="purelane-why-bundles__grid">
+      {% for block in section.blocks %}
+      <div class="purelane-why-bundles__item wb">
+        <div class="purelane-why-bundles__item-icon wb-i">
+          {% if block.settings.icon != blank %}
+            {{ block.settings.icon | image_url: width: 50 | image_tag: width: 50, height: 50, alt: block.settings.heading }}
+          {% else %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M16.5 7.2C15.6 6 14 5.4 12 5.4c-2.4 0-4 1.1-4 2.9 0 2 1.7 2.7 4.2 3.3 2.7.6 4.3 1.4 4.3 3.4 0 1.9-1.7 3.1-4.5 3.1-2.2 0-3.8-.7-4.8-2"/></svg>
+          {% endif %}
+          <h4 class="purelane-why-bundles__item-heading">{{ block.settings.heading }}</h4>
+          <p class="purelane-why-bundles__item-body">{{ block.settings.body }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

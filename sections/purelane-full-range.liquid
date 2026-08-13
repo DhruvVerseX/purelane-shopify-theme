@@ -1,0 +1,76 @@
+{% schema %}
+{
+  "name": "Purelane Full Range",
+  "tag": "section",
+  "class": "purelane-full-range-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Purelane Full Range",
+      "info": "Purelane Full Range"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "default": 10,
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "label": "Products to show"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "The full range",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Every room, one shelf</p><p>Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas that replace every harsh bottle under your sink.</p>",
+      "label": "Subheading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Full Range Preset",
+      "category": "Purelane Full Range"
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+{% assign collection = section.settings.collection %}
+{% assign products_to_show = section.settings.products_to_show | plus: 0 %}
+<div class="purelane-full-range page-width">
+  <div class="purelane-full-range__wrapper">
+    {% if section.settings.heading != blank %}
+    <div class="purelane-full-range__header">
+      <span class="purelane-full-range__kicker">The full range</span>
+      <h2 class="purelane-full-range__heading">{{ section.settings.heading }}</h2>
+      {{ section.settings.subheading }}
+    </div>
+    {% endif %}
+    <div class="purelane-full-range__slider">
+      {% if collection != blank %}
+        {% assign products = collection.products | slice: 0, products_to_show %}
+        {% for product in products %}
+        <span class="purelane-full-range__image pimg" role="img" aria-label="{{ product.title | escape }}">{{ product.featured_image | image_url: width: 200 | image_tag: width: 200, height: 200, alt: product.title }}</span>
+        {% endfor %}
+      {% else %}
+        {% for _ in (1..products_to_show) %}
+        <span class="purelane-full-range__image pimg" role="img" aria-label="Product placeholder">{{ 'icon' | placeholder_svg_tag: 'placeholder-svg' }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <p class="purelane-full-range__hint">Swipe to see the full shelf</p>
+  </div>
+</div>

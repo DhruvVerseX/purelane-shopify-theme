@@ -1,0 +1,107 @@
+{% schema %}
+{
+  "name": "Purelane Ingredients",
+  "tag": "section",
+  "class": "purelane-ingredients-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Purelane Ingredients",
+      "info": "Purelane Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Sourced from nature",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Coconut",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "default": "Plant-derived cleansers that lift grease",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ingredients Preset",
+      "category": "Purelane Ingredients",
+      "blocks": [
+        {
+          "type": "ingredient"
+        },
+        {
+          "type": "ingredient"
+        },
+        {
+          "type": "ingredient"
+        },
+        {
+          "type": "ingredient"
+        },
+        {
+          "type": "ingredient"
+        },
+        {
+          "type": "ingredient"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+<div class="purelane-ingredients page-width">
+  <div class="purelane-ingredients__wrapper">
+    <div class="purelane-ingredients__header">
+      <h2 class="purelane-ingredients__heading">{{ section.settings.heading }}</h2>
+      <div class="purelane-ingredients__rule">
+        <i></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <i></i>
+      </div>
+    </div>
+  </div>
+  <div class="purelane-ingredients__content">
+    <div class="purelane-ingredients__grid">
+      {% for block in section.blocks %}
+      <div class="purelane-ingredients__item glass">
+        <div class="purelane-ingredients__art">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 100 | image_tag: width: 100, height: 100, alt: block.settings.heading }}
+          {% else %}
+            <svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="50" cy="50" r="40"/>
+            </svg>
+          {% endif %}
+        </div>
+        <h4 class="purelane-ingredients__item-heading">{{ block.settings.heading }}</h4>
+        <p class="purelane-ingredients__item-body">{{ block.settings.body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+{% schema %}
+{
+  "name": "Purelane Trust Bar",
+  "tag": "section",
+  "class": "purelane-trust-bar-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Purelane Trust Bar",
+      "info": "Purelane Trust Bar"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "default": "<span>Plant derived<br>formulas</span>",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Trust Bar",
+      "category": "Purelane Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_item"
+        },
+        {
+          "type": "trust_item"
+        },
+        {
+          "type": "trust_item"
+        },
+        {
+          "type": "trust_item"
+        }
+      ]
+    }
+  ]}
+
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+<div class="purelane-trust-bar page-width">
+  <div class="purelane-trust-bar__wrapper">
+    <div class="purelane-trust-bar__grid trust">
+      {% for block in section.blocks %}
+      <div class="purelane-trust-bar__item trust-i">
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 50 | image_tag: width: 50, height: 50, alt: block.settings.body | strip_html | truncate: 50 }}
+        {% else %}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        {% endif %}
+        {{ block.settings.body }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

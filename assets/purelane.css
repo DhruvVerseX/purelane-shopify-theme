@@ -407,3 +407,740 @@ section[data-section-id] .badgestrip svg {
     display: none;
   }
 }
+/* Purelane Reviews Section */
+section[data-section-id] .purelane-reviews {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-reviews__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-reviews__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+section[data-section-id] .purelane-reviews__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-reviews__agg {
+  font-size: 15px;
+  color: var(--paper-2);
+}
+section[data-section-id] .purelane-reviews__agg b {
+  color: var(--surface);
+  font-weight: 700;
+}
+section[data-section-id] .purelane-reviews__rail {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  margin: 0 -18px;
+}
+section[data-section-id] .purelane-reviews__track {
+  display: flex;
+  gap: 20px;
+  padding: 0 18px;
+  scroll-padding: 0 18px;
+}
+section[data-section-id] .purelane-reviews__review {
+  flex: 0 0 auto;
+  width: 280px;
+  scroll-snap-align: start;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 20px;
+}
+section[data-section-id] .purelane-reviews__star {
+  font-size: 20px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+section[data-section-id] .purelane-reviews__heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 12px;
+}
+section[data-section-id] .purelane-reviews__body {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+section[data-section-id] .purelane-reviews__who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--paper-2);
+}
+section[data-section-id] .purelane-reviews__who svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-reviews__who b {
+  color: var(--surface);
+}
+
+/* Purelane Ingredients Section */
+section[data-section-id] .purelane-ingredients {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-ingredients__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-ingredients__header {
+  margin-bottom: 32px;
+}
+section[data-section-id] .purelane-ingredients__heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+section[data-section-id] .purelane-ingredients__rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+section[data-section-id] .purelane-ingredients__rule i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(236,230,247,0.44), transparent);
+}
+section[data-section-id] .purelane-ingredients__rule svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-ingredients__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+section[data-section-id] .purelane-ingredients__item {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+  text-align: center;
+}
+section[data-section-id] .purelane-ingredients__art {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section[data-section-id] .purelane-ingredients__art svg {
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-ingredients__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+section[data-section-id] .purelane-ingredients__item-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 12px;
+}
+section[data-section-id] .purelane-ingredients__item-body {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+
+/* Purelane How It Works Section */
+section[data-section-id] .purelane-how-it-works {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-how-it-works__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-how-it-works__pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+section[data-section-id] .purelane-how-it-works__pillar {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+  text-align: center;
+}
+section[data-section-id] .purelane-how-it-works__pi {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section[data-section-id] .purelane-how-it-works__pi svg {
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-how-it-works__pi img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+section[data-section-id] .purelane-how-it-works__heading {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 16px;
+}
+section[data-section-id] .purelane-how-it-works__body {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+section[data-section-id] .purelane-how-it-works__link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+section[data-section-id] .purelane-how-it-works__link:hover {
+  text-decoration: underline;
+}
+
+/* Purelane Proof Section */
+section[data-section-id] .purelane-proof {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-proof__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-proof__header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+section[data-section-id] .purelane-proof__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-proof__heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-proof__subheading {
+  font-size: 16px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+section[data-section-id] .purelane-proof__grid {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  margin: 0 -18px;
+}
+section[data-section-id] .purelane-proof__card {
+  flex: 0 0 auto;
+  width: 280px;
+  scroll-snap-align: start;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+  text-align: center;
+}
+section[data-section-id] .purelane-proof__shot {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  margin: 0 0 20px;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(0,0,0,0.2);
+}
+section[data-section-id] .purelane-proof__shot .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent);
+  color: #08211a;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+section[data-section-id] .purelane-proof__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+section[data-section-id] .purelane-proof__heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 12px;
+}
+section[data-section-id] .purelane-proof__rating {
+  font-size: 14px;
+  color: var(--paper-2);
+  margin: 0 0 8px;
+}
+section[data-section-id] .purelane-proof__rating b {
+  color: var(--surface);
+  font-weight: 700;
+}
+section[data-section-id] .purelane-proof__price {
+  font-size: 16px;
+  color: var(--paper-2);
+  margin: 0 0 20px;
+}
+section[data-section-id] .purelane-proof__price strong {
+  color: var(--surface);
+  font-weight: 700;
+}
+section[data-section-id] .purelane-proof__price s {
+  color: var(--paper-3);
+  font-size: 14px;
+}
+section[data-section-id] .purelane-proof__price em {
+  font-style: normal;
+  color: var(--accent);
+  font-size: 14px;
+}
+section[data-section-id] .purelane-proof__button {
+  width: 100%;
+  padding: 12px;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--surface);
+  cursor: pointer;
+}
+section[data-section-id] .purelane-proof__button:hover {
+  background: rgba(236,230,247,0.18);
+}
+
+/* Purelane Full Range Section */
+section[data-section-id] .purelane-full-range {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-full-range__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-full-range__header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+section[data-section-id] .purelane-full-range__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-full-range__heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-full-range__subheading {
+  font-size: 16px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+section[data-section-id] .purelane-full-range__slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  margin: 0 -18px;
+}
+section[data-section-id] .purelane-full-range__image {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 160px;
+  scroll-snap-align: start;
+  border-radius: var(--r);
+  object-fit: cover;
+}
+section[data-section-id] .purelane-full-range__hint {
+  font-size: 14px;
+  color: var(--paper-2);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Purelane Why Bundles Section */
+section[data-section-id] .purelane-why-bundles {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-why-bundles__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-why-bundles__header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+section[data-section-id] .purelane-why-bundles__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-why-bundles__heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-why-bundles__subheading {
+  font-size: 16px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+section[data-section-id] .purelane-why-bundles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+section[data-section-id] .purelane-why-bundles__item {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+  text-align: center;
+}
+section[data-section-id] .purelane-why-bundles__item-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section[data-section-id] .purelane-why-bundles__item-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-why-bundles__item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+section[data-section-id] .purelane-why-bundles__item-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 12px;
+}
+section[data-section-id] .purelane-why-bundles__item-body {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+
+/* Purelane Find Bundle Section */
+section[data-section-id] .purelane-find-bundle {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-find-bundle__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-find-bundle__header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+section[data-section-id] .purelane-find-bundle__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-find-bundle__heading {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-find-bundle__subheading {
+  font-size: 16px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+section[data-section-id] .purelane-find-bundle__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+section[data-section-id] .purelane-find-bundle__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+  text-decoration: none;
+}
+section[data-section-id] .purelane-find-bundle__item:hover {
+  background: rgba(236,230,247,0.18);
+}
+section[data-section-id] .purelane-find-bundle__item-ph {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+}
+section[data-section-id] .purelane-find-bundle__item-ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+section[data-section-id] .purelane-find-bundle__item-ph svg {
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-find-bundle__item-txt {
+  flex: 1;
+}
+section[data-section-id] .purelane-find-bundle__item-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--surface);
+  margin: 0 0 8px;
+}
+section[data-section-id] .purelane-find-bundle__item-body {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+
+/* Purelane Trust Bar Section */
+section[data-section-id] .purelane-trust-bar {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-trust-bar__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-trust-bar__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  text-align: center;
+}
+section[data-section-id] .purelane-trust-bar__item {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 24px;
+}
+section[data-section-id] .purelane-trust-bar__item img {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+}
+section[data-section-id] .purelane-trust-bar__item svg {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  color: var(--accent);
+}
+section[data-section-id] .purelane-trust-bar__item .trust-i {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section[data-section-id] .purelane-trust-bar__item .trust-i span {
+  font-size: 14px;
+  color: var(--paper-2);
+  line-height: 1.4;
+}
+
+/* Purelane Signup Section */
+section[data-section-id] .purelane-signup {
+  position: relative;
+  padding: 40px 0;
+  background: var(--ink);
+}
+section[data-section-id] .purelane-signup__wrapper {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+section[data-section-id] .purelane-signup__wrapper {
+  display: flex;
+  justify-content: center;
+}
+section[data-section-id] .purelane-signup__content {
+  background: rgba(236,230,247,0.10);
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+}
+section[data-section-id] .purelane-signup__kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-signup__heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+section[data-section-id] .purelane-signup__lede {
+  font-size: 16px;
+  color: var(--paper-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+section[data-section-id] .purelane-signup__form {
+  display: flex;
+  gap: 12px;
+}
+section[data-section-id] .purelane-signup__input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid rgba(236,230,247,0.22);
+  border-radius: var(--r);
+  background: rgba(0,0,0,0.2);
+  color: var(--paper-2);
+  font-size: 16px;
+}
+section[data-section-id] .purelane-signup__input::placeholder {
+  color: var(--paper-3);
+}
+section[data-section-id] .purelane-signup__button {
+  flex: 0 0 auto;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: #08211a;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+}
+section[data-section-id] .purelane-signup__button:hover {
+  opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section[data-section-id] .purelane-reviews__track {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  section[data-section-id] .purelane-reviews__review {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 20px;
+  }
+  section[data-section-id] .purelane-reviews__rail {
+    overflow-x: visible;
+    scroll-snap-type: unset;
+  }
+  section[data-section-id] .purelane-proof__grid,
+  section[data-section-id] .purelane-full-range__slider {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  section[data-section-id] .purelane-proof__card,
+  section[data-section-id] .purelane-full-range__image {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 20px;
+  }
+}
+

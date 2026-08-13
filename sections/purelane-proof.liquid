@@ -1,0 +1,135 @@
+{% schema %}
+{
+  "name": "t:sections.purelane-proof.name",
+  "tag": "section",
+  "class": "purelane-proof-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.purelane-proof.settings.header.content",
+      "info": "t:sections.purelane-proof.settings.header.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Why it works",
+      "label": "t:sections.purelane-proof.settings.heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "default": "<p>Tough on grime.<br>Gentle on everything else.</p>",
+      "label": "t:sections.purelane-proof.settings.subheading.label"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "See the ingredient list",
+      "label": "t:sections.purelane-proof.settings.button_text.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "default": "#ingredients",
+      "label": "t:sections.purelane-proof.settings.button_link.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.purelane-proof.blocks.product.name",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product_picker",
+          "id": "product",
+          "label": "t:sections.purelane-proof.blocks.product.settings.product.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_new_badge",
+          "default": false,
+          "label": "t:sections.purelane-proof.blocks.product.settings.show_new_badge.label"
+        },
+        {
+          "type": "text",
+          "id": "rating",
+          "default": "4.8",
+          "label": "t:sections.purelane-proof.blocks.product.settings.rating.label"
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "default": "231",
+          "label": "t:sections.purelane-proof.blocks.product.settings.review_count.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.purelane-proof.presets.name",
+      "category": "t:sections.purelane-proof.presets.category",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}
+<div class="purelane-proof page-width">
+  <div class="purelane-proof__wrapper">
+    {% if section.settings.heading != blank %}
+    <div class="purelane-proof__header">
+      <span class="purelane-proof__kicker">Why it works</span>
+      <h2 class="purelane-proof__heading">{{ section.settings.heading }}</h2>
+      {{ section.settings.subheading }}
+    </div>
+    {% endif %}
+    <div class="purelane-proof__grid">
+      {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      {% assign show_new_badge = block.settings.show_new_badge %}
+      {% assign rating = block.settings.rating %}
+      {% assign review_count = block.settings.review_count %}
+      {% if product != blank %}
+      <article class="purelane-proof__card glass">
+        <div class="purelane-proof__shot">
+          {% if show_new_badge %}
+            <span class="purelane-proof__badge">New</span>
+          {% endif %}
+          {% if product.featured_image != blank %}
+            {{ product.featured_image | image_url: width: 300 | image_tag: width: 300, height: 300, alt: product.title }}
+          {% else %}
+            {{ 'icon' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        <h4 class="purelane-proof__heading">{{ product.title }}</h4>
+        <div class="purelane-proof__rating"><b>★ {{ rating }}</b> · {{ review_count }} reviews</div>
+        <div class="purelane-proof__price">
+          {% if product.compare_at_price > product.price %}
+            <strong>{{ product.price | money }}</strong>{{ product.compare_at_price | money }}
+            <em>{{ 100 | minus: (product.price | divided_by: product.compare_at_price | times: 100) | round }}% off</em>
+          {% else %}
+            <strong>{{ product.price | money }}</strong>
+          {% endif %}
+        </div>
+        <button type="button" class="purelane-proof__button btn btn-ghost btn-sm">Add to cart</button>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

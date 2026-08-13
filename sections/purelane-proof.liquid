@@ -1,84 +1,82 @@
 {% schema %}
 {
-  "name": "t:sections.purelane-proof.name",
+  "name": "Purelane Proof",
   "tag": "section",
   "class": "purelane-proof-section",
   "settings": [
     {
       "type": "header",
-      "content": "t:sections.purelane-proof.settings.header.content",
-      "info": "t:sections.purelane-proof.settings.header.info"
+      "content": "Purelane Proof"
     },
     {
       "type": "text",
       "id": "heading",
       "default": "Why it works",
-      "label": "t:sections.purelane-proof.settings.heading.label"
+      "label": "Heading"
     },
     {
       "type": "richtext",
       "id": "subheading",
       "default": "<p>Tough on grime.<br>Gentle on everything else.</p>",
-      "label": "t:sections.purelane-proof.settings.subheading.label"
+      "label": "Subheading"
     },
     {
       "type": "text",
       "id": "button_text",
       "default": "See the ingredient list",
-      "label": "t:sections.purelane-proof.settings.button_text.label"
+      "label": "Button text"
     },
     {
       "type": "url",
       "id": "button_link",
-      "default": "#ingredients",
-      "label": "t:sections.purelane-proof.settings.button_link.label"
+      "label": "Button link"
     }
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "t:sections.purelane-proof.blocks.product.name",
+      "type": "proof_product",
+      "name": "Product",
       "limit": 6,
       "settings": [
         {
-          "type": "product_picker",
+          "type": "product",
           "id": "product",
-          "label": "t:sections.purelane-proof.blocks.product.settings.product.label"
+          "label": "Product"
         },
         {
           "type": "checkbox",
           "id": "show_new_badge",
           "default": false,
-          "label": "t:sections.purelane-proof.blocks.product.settings.show_new_badge.label"
+          "label": "Show new badge"
         },
         {
           "type": "text",
           "id": "rating",
           "default": "4.8",
-          "label": "t:sections.purelane-proof.blocks.product.settings.rating.label"
+          "label": "Rating"
         },
         {
           "type": "text",
           "id": "review_count",
           "default": "231",
-          "label": "t:sections.purelane-proof.blocks.product.settings.review_count.label"
+          "label": "Review count"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.purelane-proof.presets.name",
-      "category": "t:sections.purelane-proof.presets.category",
+      "name": "Purelane Proof",
+      "category": "Purelane",
       "blocks": [
         {
-          "type": "product"
+          "type": "proof_product"
         },
         {
-          "type": "product"
+          "type": "proof_product"
         },
         {
-          "type": "product"
+          "type": "proof_product"
         }
       ]
     }
@@ -105,7 +103,7 @@
       {% assign rating = block.settings.rating %}
       {% assign review_count = block.settings.review_count %}
       {% if product != blank %}
-      <article class="purelane-proof__card glass">
+      <article class="purelane-proof__card glass" {{ block.shopify_attributes }}>
         <div class="purelane-proof__shot">
           {% if show_new_badge %}
             <span class="purelane-proof__badge">New</span>
@@ -120,8 +118,10 @@
         <div class="purelane-proof__rating"><b>★ {{ rating }}</b> · {{ review_count }} reviews</div>
         <div class="purelane-proof__price">
           {% if product.compare_at_price > product.price %}
+            {% assign price_diff = product.compare_at_price | minus: product.price %}
+            {% assign discount_percent = price_diff | times: 100 | divided_by: product.compare_at_price | round %}
             <strong>{{ product.price | money }}</strong>{{ product.compare_at_price | money }}
-            <em>{{ 100 | minus: (product.price | divided_by: product.compare_at_price | times: 100) | round }}% off</em>
+            <em>{{ discount_percent }}% off</em>
           {% else %}
             <strong>{{ product.price | money }}</strong>
           {% endif %}

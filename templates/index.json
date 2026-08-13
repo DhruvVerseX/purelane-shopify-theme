@@ -26,7 +26,7 @@
         }
       },
       "settings": {
-        "heading": "Clean / That / Lasts",
+        "heading": "Clean That Lasts",
         "highlighted_word": "Lasts",
         "description": "Plant-based homecare for kitchen, laundry, bathroom and hands. Free shipping across India.",
         "primary_button_label": "Shop now",
@@ -128,10 +128,7 @@
             "icon": "",
             "heading": "Less scrubbing",
             "body": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.",
-            "link": {
-              "url": "#",
-              "title": "Learn more"
-            }
+            "link": "#"
           }
         },
         "pillar_2": {
@@ -140,10 +137,7 @@
             "icon": "",
             "heading": "Clean ingredients",
             "body": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.",
-            "link": {
-              "url": "#ingredients",
-              "title": "Learn more"
-            }
+            "link": "#ingredients"
           }
         },
         "pillar_3": {
@@ -152,10 +146,7 @@
             "icon": "",
             "heading": "Safe around everyone",
             "body": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.",
-            "link": {
-              "url": "#proof",
-              "title": "Learn more"
-            }
+            "link": "#proof"
           }
         }
       }
@@ -164,7 +155,7 @@
       "type": "purelane-proof",
       "blocks": {
         "product_1": {
-          "type": "product",
+          "type": "proof_product",
           "settings": {
             "product": "",
             "show_new_badge": false,
@@ -173,7 +164,7 @@
           }
         },
         "product_2": {
-          "type": "product",
+          "type": "proof_product",
           "settings": {
             "product": "",
             "show_new_badge": true,
@@ -182,7 +173,7 @@
           }
         },
         "product_3": {
-          "type": "product",
+          "type": "proof_product",
           "settings": {
             "product": "",
             "show_new_badge": false,
@@ -245,10 +236,7 @@
           "type": "category",
           "settings": {
             "image": "",
-            "link": {
-              "url": "#combos",
-              "title": ""
-            },
+            "link": "#combos",
             "heading": "Kitchen bundle",
             "body": "Grease, dishes &amp; more"
           }
@@ -257,10 +245,7 @@
           "type": "category",
           "settings": {
             "image": "",
-            "link": {
-              "url": "#combos",
-              "title": ""
-            },
+            "link": "#combos",
             "heading": "Bathroom bundle",
             "body": "Deep clean &amp; disinfect"
           }
@@ -269,10 +254,7 @@
           "type": "category",
           "settings": {
             "image": "",
-            "link": {
-              "url": "#combos",
-              "title": ""
-            },
+            "link": "#combos",
             "heading": "Laundry bundle",
             "body": "Softer, fresher wash"
           }
@@ -281,10 +263,7 @@
           "type": "category",
           "settings": {
             "image": "",
-            "link": {
-              "url": "#combos",
-              "title": ""
-            },
+            "link": "#combos",
             "heading": "Hard water bundle",
             "body": "Melt away limescale"
           }
@@ -298,28 +277,28 @@
           "type": "trust_item",
           "settings": {
             "image": "",
-            "body": "<span>Plant derived<br>formulas</span>"
+            "body": "<p>Plant derived<br>formulas</p>"
           }
         },
         "trust_item_2": {
           "type": "trust_item",
           "settings": {
             "image": "",
-            "body": "<span>Recyclable<br>packaging</span>"
+            "body": "<p>Recyclable<br>packaging</p>"
           }
         },
         "trust_item_3": {
           "type": "trust_item",
           "settings": {
             "image": "",
-            "body": "<span>Safe for<br>kids &amp; pets</span>"
+            "body": "<p>Safe for<br>kids &amp; pets</p>"
           }
         },
         "trust_item_4": {
           "type": "trust_item",
           "settings": {
             "image": "",
-            "body": "<span>Made in<br>India</span>"
+            "body": "<p>Made in<br>India</p>"
           }
         }
       }

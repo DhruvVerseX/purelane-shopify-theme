@@ -1,18 +1,20 @@
-{% comment %}
-  Purelane Hero Section
-{% endcomment %}
+{% assign heading_parts = section.settings.heading | split: section.settings.highlighted_word %}
+{% if heading_parts.size == 2 %}
+  {{ heading_parts[0] | newline_to_br }}<span class="purelane-hero__highlight">{{ section.settings.highlighted_word }}</span>{{ heading_parts[1] | newline_to_br }}
+{% else %}
+  {{ section.settings.heading }}
+{% endif %}
 
+{{ 'purelane.css' | asset_url | stylesheet_tag }}
 <section
   data-section-id="{{ section.id }}"
   class="purelane-hero"
   data-section-type="purelane-hero"
 >
   <div class="purelane-hero__wrapper">
-    {/* Background effect - we'll create with CSS */}
 
     <div class="purelane-hero__content">
       <div class="purelane-hero__grid">
-        {/* Heading and description */}
         <div class="purelane-hero__copy">
           {%- if section.settings.heading != blank -%}
             {%- assign highlighted_word = section.settings.highlighted_word -%}
@@ -56,7 +58,6 @@
           {%- endunless -%}
         </div>
 
-        {/* Promise cards */}
         {%- if section.blocks.promise.size > 0 -%}
           <div class="purelane-hero__promises">
             {%- for promise_block in section.blocks.promise -%}
@@ -79,7 +80,6 @@
           </div>
         {%- endif -%}
 
-        {/* Product and price card */}
         <div class="purelane-hero__product-wrapper">
           {%- assign product = section.settings.product -%}
           {%- if product == blank -%}
@@ -101,7 +101,6 @@
               {%- endif -%}
             </div>
 
-            {/* Price card */}
             {%- if product.price_varies == false and product.available -%}
               {%- assign compare_at_price = product.compare_at_price -%}
               {%- assign price = product.price -%}
@@ -141,7 +140,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Clean / That / Lasts",
+      "default": "Clean That Lasts",
       "info": "Enter the full heading text. The highlighted word will be styled separately."
     },
     {
@@ -166,7 +165,7 @@
       "type": "text",
       "id": "primary_button_label",
       "label": "Button Label",
-      "default": "Shop now"
+      "default": "Shop now "
     },
     {
       "type": "url",
@@ -193,8 +192,7 @@
     {
       "type": "url",
       "id": "secondary_button_link",
-      "label": "Button Link",
-      "default": ""
+      "label": "Button Link"
     },
     {
       "type": "checkbox",

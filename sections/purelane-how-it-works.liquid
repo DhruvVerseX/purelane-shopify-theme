@@ -86,7 +86,7 @@
         <h3 class="purelane-how-it-works__heading">{{ block.settings.heading }}</h3>
         <p class="purelane-how-it-works__body">{{ block.settings.body }}</p>
         {% if block.settings.link != blank %}
-        <a href="{{ block.settings.link.url }}" class="purelane-how-it-works__link btn btn-ghost btn-sm">{{ block.settings.link.title | default: 'Learn more' }}</a>
+        <a href="{{ block.settings.link }}" class="purelane-how-it-works__link btn btn-ghost btn-sm">Learn more</a>
         {% endif %}
       </article>
       {% endfor %}

@@ -278,6 +278,13 @@
       }
     {% endstyle %}
 
+    {%- if template.name == 'index' -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      {{ 'purelane.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -321,7 +328,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if template.name == 'index' %} purelane-home{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -330,11 +337,18 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {%- if template.name == 'index' -%}
+      {% render 'purelane-scenes' %}
+      {% render 'purelane-ticker' %}
+      {% render 'purelane-header' %}
+      {% render 'purelane-rail' %}
+    {%- else -%}
+      {% sections 'header-group' %}
+    {%- endif -%}
 
     <main
       id="MainContent"
-      class="content-for-layout focus-none"
+      class="content-for-layout focus-none{% if template.name == 'index' %} purelane-main{% endif %}"
       role="main"
       tabindex="-1"
       data-template="{{ template.name }}"
@@ -400,6 +414,11 @@
 
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- if template.name == 'index' -%}
+      {% render 'purelane-sticky-cta' %}
+      <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   </body>
 </html>

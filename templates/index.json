@@ -14,60 +14,64 @@
         "promise_2": {
           "type": "promise",
           "settings": {
-            "icon": "shield",
-            "label": "Safe for\nkids & pets",
-            "short_label": "Kids & pet safe"
+            "icon": "paw",
+            "label": "Pet\nfriendly",
+            "short_label": "Pet friendly"
           }
         },
         "promise_3": {
           "type": "promise",
           "settings": {
-            "icon": "ban",
-            "label": "Zero harsh\nchemicals",
-            "short_label": "Zero harsh chem"
+            "icon": "recycle",
+            "label": "Less\nplastic",
+            "short_label": "Less plastic"
+          }
+        },
+        "promise_4": {
+          "type": "promise",
+          "settings": {
+            "icon": "india",
+            "label": "Made in\nIndia",
+            "short_label": "Made in India"
           }
         },
         "slide_1": {
           "type": "slide",
           "settings": {
             "product_count": 1,
-            "price_label": "Single bottle",
-            "price": "₹200",
-            "compare_price": "₹299",
-            "savings_label": "33% off"
+            "price_label": "Single bottle"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
             "product_count": 2,
-            "price_label": "Any 2 products",
-            "price": "₹349",
-            "compare_price": "₹598",
-            "savings_label": "Save ₹249"
+            "price_label": "Any 2 products"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
             "product_count": 3,
-            "price_label": "Any 3 products",
-            "price": "₹499",
-            "compare_price": "₹897",
-            "savings_label": "Save ₹398"
+            "price_label": "Any 3 products"
           }
         }
       },
-      "block_order": ["promise_1", "promise_2", "promise_3", "slide_1", "slide_2", "slide_3"],
+      "block_order": ["promise_1", "promise_2", "promise_3", "promise_4", "slide_1", "slide_2", "slide_3"],
       "settings": {
-        "heading": "Clean / That / Lasts",
-        "highlighted_word": "Lasts",
-        "description": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
-        "primary_button_label": "Shop now",
+        "eyebrow": "Plant-powered homecare",
+        "heading": "Clean that / feels good.",
+        "highlighted_word": "",
+        "description": "Powerful cleaning made from plants. Tough on everyday grime, gentle around your family, pets and the planet.",
+        "primary_button_label": "Shop bestsellers",
         "primary_button_link": "#shop",
         "primary_button_show_arrow": true,
-        "secondary_button_label": "How it works",
-        "secondary_button_link": "#how"
+        "secondary_button_label": "Why Purelane",
+        "secondary_button_link": "#how",
+        "trust_text": "Loved by 30,000+ homes",
+        "offer_label": "33% OFF",
+        "offer_price": "₹200",
+        "offer_compare_price": "₹299"
       }
     },
     "purelane_reviews": {

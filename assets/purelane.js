@@ -82,7 +82,7 @@
   }
 
   var hdr = document.getElementById("purelane-header");
-  var prod = document.getElementById("heroProd");
+  var heroProducts = Array.prototype.slice.call(document.querySelectorAll("[data-purelane-hero-product]"));
   var raf = null;
   var mx = 0;
   var my = 0;
@@ -100,11 +100,11 @@
         layers[i].style.setProperty("--px", (mx * depth * 130).toFixed(1) + "px");
         layers[i].style.setProperty("--py", (-y * depth + my * depth * 90).toFixed(1) + "px");
       }
-      if (prod) {
+      heroProducts.forEach(function (prod) {
         var fade = Math.min(y / 700, 1);
         prod.style.transform = "translate3d(" + (mx * -16).toFixed(2) + "px," + (-fade * 54 + my * -10).toFixed(2) + "px,0) scale(" + (1 - fade * 0.06).toFixed(3) + ")";
         prod.style.opacity = (1 - fade * 0.55).toFixed(3);
-      }
+      });
     }
     syncRail();
     pickScene();
@@ -127,74 +127,124 @@
     }, { passive: true });
   }
 
-  if (!reduce && prod && prod.animate) {
-    prod.animate(
-      [
-        { filter: "drop-shadow(0 34px 54px rgba(2,20,19,.6))" },
-        { filter: "drop-shadow(0 42px 68px rgba(2,20,19,.68))" },
-        { filter: "drop-shadow(0 34px 54px rgba(2,20,19,.6))" }
-      ],
-      { duration: 7000, iterations: Infinity, easing: "ease-in-out" }
-    );
-  }
-
-  var hstage = document.getElementById("hstage");
-  if (hstage) {
-    var slides = Array.prototype.slice.call(hstage.querySelectorAll(".hslide"));
-    var dots = Array.prototype.slice.call(document.querySelectorAll("#hdots button"));
-    var slideIndex = 0;
-    var slideTimer = null;
-
-    function goToSlide(n) {
-      slideIndex = (n + slides.length) % slides.length;
-      slides.forEach(function (slide, index) {
-        slide.classList.toggle("on", index === slideIndex);
-      });
-      dots.forEach(function (dot, index) {
-        dot.classList.toggle("on", index === slideIndex);
-      });
-    }
-
-    function playSlides() {
-      if (!slideTimer && !reduce) {
-        slideTimer = setInterval(function () {
-          goToSlide(slideIndex + 1);
-        }, 3800);
+  if (!reduce) {
+    heroProducts.forEach(function (prod) {
+      if (!prod.animate) {
+        return;
       }
-    }
-
-    function stopSlides() {
-      if (slideTimer) {
-        clearInterval(slideTimer);
-        slideTimer = null;
-      }
-    }
-
-    dots.forEach(function (dot, index) {
-      dot.addEventListener("click", function () {
-        stopSlides();
-        goToSlide(index);
-        playSlides();
-      });
+      prod.animate(
+        [
+          { filter: "drop-shadow(0 34px 54px rgba(2,20,19,.6))" },
+          { filter: "drop-shadow(0 42px 68px rgba(2,20,19,.68))" },
+          { filter: "drop-shadow(0 34px 54px rgba(2,20,19,.6))" }
+        ],
+        { duration: 7000, iterations: Infinity, easing: "ease-in-out" }
+      );
     });
-
-    hstage.addEventListener("mouseenter", stopSlides);
-    hstage.addEventListener("mouseleave", playSlides);
-
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            playSlides();
-          } else {
-            stopSlides();
-          }
-        });
-      }, { threshold: 0.2 }).observe(hstage);
-    } else {
-      playSlides();
-    }
   }
+
+  function initHeroStages(scope) {
+    var roots = [];
+    if (scope && scope.matches && scope.matches("[data-purelane-hero]")) {
+      roots = [scope];
+    } else if (scope && scope.querySelectorAll) {
+      roots = Array.prototype.slice.call(scope.querySelectorAll("[data-purelane-hero]"));
+    }
+
+    roots.forEach(function (hero) {
+      if (hero.dataset.purelaneHeroReady === "true") {
+        return;
+      }
+
+      var hstage = hero.querySelector("[data-purelane-hero-stage]");
+      if (!hstage) {
+        return;
+      }
+
+      hero.dataset.purelaneHeroReady = "true";
+      var slides = Array.prototype.slice.call(hstage.querySelectorAll(".hslide"));
+      var dots = Array.prototype.slice.call(hero.querySelectorAll("[data-purelane-hero-dots] button"));
+      var slideIndex = 0;
+      var slideTimer = null;
+      var slideObserver = null;
+
+      function goToSlide(n) {
+        if (!slides.length) {
+          return;
+        }
+        slideIndex = (n + slides.length) % slides.length;
+        slides.forEach(function (slide, index) {
+          slide.classList.toggle("on", index === slideIndex);
+        });
+        dots.forEach(function (dot, index) {
+          dot.classList.toggle("on", index === slideIndex);
+        });
+      }
+
+      function playSlides() {
+        if (!slideTimer && !reduce && slides.length > 1) {
+          slideTimer = setInterval(function () {
+            goToSlide(slideIndex + 1);
+          }, 3800);
+        }
+      }
+
+      function stopSlides() {
+        if (slideTimer) {
+          clearInterval(slideTimer);
+          slideTimer = null;
+        }
+      }
+
+      dots.forEach(function (dot, index) {
+        dot.addEventListener("click", function () {
+          stopSlides();
+          goToSlide(index);
+          playSlides();
+        });
+      });
+
+      hstage.addEventListener("mouseenter", stopSlides);
+      hstage.addEventListener("mouseleave", playSlides);
+
+      if ("IntersectionObserver" in window) {
+        slideObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              playSlides();
+            } else {
+              stopSlides();
+            }
+          });
+        }, { threshold: 0.2 });
+        slideObserver.observe(hstage);
+      } else {
+        playSlides();
+      }
+
+      hero._purelaneHeroDestroy = function () {
+        stopSlides();
+        if (slideObserver) {
+          slideObserver.disconnect();
+        }
+      };
+    });
+  }
+
+  initHeroStages(document);
+
+  document.addEventListener("shopify:section:load", function (event) {
+    initHeroStages(event.target);
+  });
+
+  document.addEventListener("shopify:section:unload", function (event) {
+    var hero = event.target.matches && event.target.matches("[data-purelane-hero]")
+      ? event.target
+      : event.target.querySelector && event.target.querySelector("[data-purelane-hero]");
+    if (hero && hero._purelaneHeroDestroy) {
+      hero._purelaneHeroDestroy();
+    }
+  });
 
   var rot = document.getElementById("rot");
   if (rot) {

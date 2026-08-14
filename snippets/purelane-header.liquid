@@ -1,4 +1,4 @@
-<header class="purelane-header" id="purelane-header">
+<header class="purelane-header" data-purelane-section data-section-type="header-nav" data-purelane-header>
   <div class="purelane-navpill glass">
     <a class="purelane-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
       <span class="purelane-brand__txt">
@@ -19,12 +19,12 @@
         <span>Bag</span>
         <span>{{ cart.item_count }}</span>
       </a>
-      <button type="button" class="purelane-ico purelane-burger" aria-label="Menu" aria-expanded="false" data-purelane-menu-toggle>
+      <button type="button" class="purelane-ico purelane-burger" aria-label="Menu" aria-expanded="false" aria-controls="purelane-mobile-menu-{{ section.id | default: 'snippet' }}" data-purelane-menu-toggle>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
       </button>
     </div>
   </div>
-  <div class="purelane-mobile-menu" hidden data-purelane-mobile-menu>
+  <div class="purelane-mobile-menu" id="purelane-mobile-menu-{{ section.id | default: 'snippet' }}" hidden data-purelane-mobile-menu>
     <a href="#shop">Shop</a>
     <a href="#ingredients">Ingredients</a>
     <a href="#how">Why Purelane</a>

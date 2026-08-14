@@ -1,11 +1,44 @@
 {
   "sections": {
-    "purelane_exact_reference": {
-      "type": "purelane-exact-reference",
-      "settings": {}
-    }
+    "purelane_atmosphere": { "type": "purelane-atmosphere", "settings": {} },
+    "purelane_announcement": { "type": "purelane-announcement-bar", "settings": {} },
+    "purelane_header_nav": { "type": "purelane-header-nav", "settings": {} },
+    "purelane_progress_rail": { "type": "purelane-progress-rail", "settings": {} },
+    "purelane_hero": { "type": "purelane-hero", "settings": {} },
+    "purelane_reviews": { "type": "purelane-reviews", "settings": {} },
+    "purelane_ingredients": { "type": "purelane-ingredients", "settings": {} },
+    "purelane_how": { "type": "purelane-how-it-works", "settings": {} },
+    "purelane_proof": { "type": "purelane-proof", "settings": {} },
+    "purelane_combos": { "type": "purelane-combos", "settings": {} },
+    "purelane_bundles": { "type": "purelane-bundles", "settings": {} },
+    "purelane_shop": { "type": "purelane-shop", "settings": {} },
+    "purelane_range": { "type": "purelane-full-range", "settings": {} },
+    "purelane_why_bundles": { "type": "purelane-why-bundles", "settings": {} },
+    "purelane_categories": { "type": "purelane-find-bundle", "settings": {} },
+    "purelane_trust": { "type": "purelane-trust-bar", "settings": {} },
+    "purelane_signup": { "type": "purelane-signup", "settings": {} },
+    "purelane_footer": { "type": "purelane-footer", "settings": {} },
+    "purelane_sticky": { "type": "purelane-sticky-cta", "settings": {} }
   },
   "order": [
-    "purelane_exact_reference"
+    "purelane_atmosphere",
+    "purelane_announcement",
+    "purelane_header_nav",
+    "purelane_progress_rail",
+    "purelane_hero",
+    "purelane_reviews",
+    "purelane_ingredients",
+    "purelane_how",
+    "purelane_proof",
+    "purelane_combos",
+    "purelane_bundles",
+    "purelane_shop",
+    "purelane_range",
+    "purelane_why_bundles",
+    "purelane_categories",
+    "purelane_trust",
+    "purelane_signup",
+    "purelane_footer",
+    "purelane_sticky"
   ]
 }

@@ -1,36 +1,43 @@
-<section class="sec purelane-trust-bar" data-section-id="{{ section.id }}" data-scene="4">
+<!-- ================= TRUST BAR ================= -->
+<section
+  class="sec"
+  data-purelane-section
+  data-section-id="{{ section.id }}"
+  data-section-type="trust-bar"
+  data-scene="4"
+>
   <div class="wrap">
     <div class="glass trust rv">
-      {%- for block in section.blocks -%}
-        <div class="trust-i" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 52 | image_tag: loading: 'lazy', alt: block.settings.label, width: 26, height: 26 }}
-          {%- else -%}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-          {%- endif -%}
-          <span>{{ block.settings.label | newline_to_br }}</span>
-        </div>
-      {%- endfor -%}
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <span>{{ section.settings.item_1 | default: 'Plant derived<br>formulas' }}</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 8 6.5 3h11L20 8M9.5 12h5"/></svg>
+        <span>{{ section.settings.item_2 | default: 'Recyclable<br>packaging' }}</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
+        <span>{{ section.settings.item_3 | default: 'Safe for<br>kids &amp; pets' }}</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/></svg>
+        <span>{{ section.settings.item_4 | default: 'Made in<br>India' }}</span>
+      </div>
     </div>
   </div>
 </section>
-
 {% schema %}
 {
   "name": "Purelane Trust Bar",
   "tag": "section",
-  "class": "purelane-trust-bar-section",
-  "blocks": [
-    {
-      "type": "trust_item",
-      "name": "Trust item",
-      "limit": 4,
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Icon" },
-        { "type": "textarea", "id": "label", "label": "Label", "default": "Plant derived\nformulas" }
-      ]
-    }
+  "class": "purelane-trust-section",
+  "settings": [
+    { "type": "html", "id": "item_1", "label": "Trust item 1", "default": "Plant derived<br>formulas" },
+    { "type": "html", "id": "item_2", "label": "Trust item 2", "default": "Recyclable<br>packaging" },
+    { "type": "html", "id": "item_3", "label": "Trust item 3", "default": "Safe for<br>kids &amp; pets" },
+    { "type": "html", "id": "item_4", "label": "Trust item 4", "default": "Made in<br>India" }
   ],
-  "presets": [{ "name": "Purelane Trust Bar", "blocks": [{ "type": "trust_item" }, { "type": "trust_item" }, { "type": "trust_item" }, { "type": "trust_item" }] }]
+  "presets": [{ "name": "Purelane Trust Bar" }]
 }
 {% endschema %}

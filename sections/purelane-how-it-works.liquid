@@ -1,44 +1,59 @@
-<section id="how" class="sec purelane-how-it-works" data-section-id="{{ section.id }}" data-scene="2">
+<!-- ================= PILLARS ================= -->
+<section
+  class="sec"
+  id="purelane-how-{{ section.id }}"
+  data-purelane-section
+  data-section-id="{{ section.id }}"
+  data-section-type="how-it-works"
+  data-purelane-anchor="how"
+  data-scene="2"
+>
   <div class="wrap">
     <div class="pillars">
-      {%- for block in section.blocks -%}
-        <article class="glass pillar rv {% if forloop.index == 2 %}rv-d2{% elsif forloop.index == 3 %}rv-d3{% endif %}" {{ block.shopify_attributes }}>
-          <span class="pi">
-            {%- if block.settings.icon != blank -%}
-              {{ block.settings.icon | image_url: width: 50 | image_tag: loading: 'lazy', alt: block.settings.heading, width: 24, height: 24 }}
-            {%- else -%}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
-            {%- endif -%}
-          </span>
-          <h3 class="d3">{{ block.settings.heading }}</h3>
-          <p class="body-s">{{ block.settings.body }}</p>
-          {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}" class="btn btn-ghost btn-sm">Learn more</a>
-          {%- endif -%}
-        </article>
-      {%- endfor -%}
+      <article class="glass pillar rv">
+        <span class="pi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
+        </span>
+        <h3 class="d3">{{ section.settings.card_1_heading | default: 'Less scrubbing' | escape }}</h3>
+        <p class="body-s">{{ section.settings.card_1_body | default: 'A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.' | escape }}</p>
+        <a class="btn btn-ghost btn-sm" href="{{ section.settings.card_1_link | default: '#shop' }}">{{ section.settings.button_label | default: 'Learn more' | escape }}</a>
+      </article>
+      <article class="glass pillar rv rv-d2">
+        <span class="pi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
+        </span>
+        <h3 class="d3">{{ section.settings.card_2_heading | default: 'Clean ingredients' | escape }}</h3>
+        <p class="body-s">{{ section.settings.card_2_body | default: 'No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.' | escape }}</p>
+        <a class="btn btn-ghost btn-sm" href="{{ section.settings.card_2_link | default: '#ingredients' }}">{{ section.settings.button_label | default: 'Learn more' | escape }}</a>
+      </article>
+      <article class="glass pillar rv rv-d3">
+        <span class="pi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
+        </span>
+        <h3 class="d3">{{ section.settings.card_3_heading | default: 'Safe around everyone' | escape }}</h3>
+        <p class="body-s">{{ section.settings.card_3_body | default: 'Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.' | escape }}</p>
+        <a class="btn btn-ghost btn-sm" href="{{ section.settings.card_3_link | default: '#proof' }}">{{ section.settings.button_label | default: 'Learn more' | escape }}</a>
+      </article>
     </div>
   </div>
 </section>
-
 {% schema %}
 {
   "name": "Purelane How It Works",
   "tag": "section",
-  "class": "purelane-how-it-works-section",
-  "blocks": [
-    {
-      "type": "pillar",
-      "name": "Pillar",
-      "limit": 3,
-      "settings": [
-        { "type": "image_picker", "id": "icon", "label": "Icon" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Less scrubbing" },
-        { "type": "textarea", "id": "body", "label": "Body", "default": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub." },
-        { "type": "url", "id": "link", "label": "Link" }
-      ]
-    }
+  "class": "purelane-how-section",
+  "settings": [
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn more" },
+    { "type": "text", "id": "card_1_heading", "label": "Card 1 heading", "default": "Less scrubbing" },
+    { "type": "textarea", "id": "card_1_body", "label": "Card 1 body", "default": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub." },
+    { "type": "url", "id": "card_1_link", "label": "Card 1 link" },
+    { "type": "text", "id": "card_2_heading", "label": "Card 2 heading", "default": "Clean ingredients" },
+    { "type": "textarea", "id": "card_2_body", "label": "Card 2 body", "default": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food." },
+    { "type": "url", "id": "card_2_link", "label": "Card 2 link" },
+    { "type": "text", "id": "card_3_heading", "label": "Card 3 heading", "default": "Safe around everyone" },
+    { "type": "textarea", "id": "card_3_body", "label": "Card 3 body", "default": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day." },
+    { "type": "url", "id": "card_3_link", "label": "Card 3 link" }
   ],
-  "presets": [{ "name": "Purelane How It Works", "blocks": [{ "type": "pillar" }, { "type": "pillar" }, { "type": "pillar" }] }]
+  "presets": [{ "name": "Purelane How It Works" }]
 }
 {% endschema %}

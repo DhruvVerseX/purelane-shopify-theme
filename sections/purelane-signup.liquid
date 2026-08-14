@@ -1,25 +1,23 @@
-<section class="sec purelane-signup" data-section-id="{{ section.id }}" data-scene="4">
+<!-- ================= SIGNUP ================= -->
+<section
+  class="sec"
+  data-purelane-section
+  data-section-id="{{ section.id }}"
+  data-section-type="signup"
+  data-scene="4"
+>
   <div class="wrap">
     <div class="glass signup rv">
-      <span class="kicker">{{ section.settings.kicker }}</span>
-      <h2 class="d2">{{ section.settings.heading }}</h2>
-      <div class="lede">{{ section.settings.subheading }}</div>
-      {% form 'customer', class: 'purelane-signup__form' %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input
-          type="email"
-          name="contact[email]"
-          class="purelane-signup__input"
-          placeholder="{{ section.settings.placeholder }}"
-          aria-label="Email address"
-          required
-        >
-        <button type="submit" class="btn btn-primary">{{ section.settings.button_label }}</button>
-      {% endform %}
+      <span class="kicker">{{ section.settings.kicker | default: 'Join the Purelane Club' | escape }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | default: 'Get ₹100 off your first bundle' | escape }}</h2>
+      <p class="lede" style="margin:0 auto">{{ section.settings.body | default: 'Plus first access to new launches and restocks.' | escape }}</p>
+      <form onsubmit="return false">
+        <input type="email" placeholder="{{ section.settings.placeholder | default: 'your@email.com' | escape }}" aria-label="{{ section.settings.input_label | default: 'Email address' | escape }}" required>
+        <button class="btn btn-primary" type="submit">{{ section.settings.button_label | default: 'Get my ₹100 off' | escape }}</button>
+      </form>
     </div>
   </div>
 </section>
-
 {% schema %}
 {
   "name": "Purelane Signup",
@@ -28,8 +26,9 @@
   "settings": [
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "Join the Purelane Club" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Get ₹100 off your first bundle" },
-    { "type": "richtext", "id": "subheading", "label": "Subheading", "default": "<p>Plus first access to new launches and restocks.</p>" },
-    { "type": "text", "id": "placeholder", "label": "Placeholder", "default": "your@email.com" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Plus first access to new launches and restocks." },
+    { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "input_label", "label": "Input accessibility label", "default": "Email address" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Get my ₹100 off" }
   ],
   "presets": [{ "name": "Purelane Signup" }]

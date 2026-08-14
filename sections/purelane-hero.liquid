@@ -1,361 +1,101 @@
-{%- liquid
-  assign promise_blocks = section.blocks | where: 'type', 'promise'
--%}
-
+<!-- ================= HERO ================= -->
 <section
-  id="{% if section.index == 1 %}purelane-top{% else %}PurelaneHero-{{ section.id }}{% endif %}"
-  class="purelane-hero sec"
+  class="hero"
+  id="purelane-hero-{{ section.id }}"
+  data-purelane-section
   data-section-id="{{ section.id }}"
+  data-section-type="hero"
+  data-purelane-anchor="top"
   data-purelane-hero
   data-scene="1"
 >
-  <div class="purelane-hero__wrapper wrap">
-    <div class="purelane-hero__grid">
+  <div class="hero-grid">
 
-      {%- if promise_blocks.size > 0 -%}
-        <div class="badges glass-2 rv in" aria-label="{{ section.settings.promise_group_label | escape }}">
-          {%- for block in promise_blocks -%}
-            <div class="badge" {{ block.shopify_attributes }}>
-              <span class="bi" aria-hidden="true">
-                {%- case block.settings.icon -%}
-                  {%- when 'shield' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
-                  {%- when 'ban' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg>
-                  {%- else -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-                {%- endcase -%}
-              </span>
-              <span>{{ block.settings.label | escape | newline_to_br }}</span>
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      <div class="purelane-hero__copy">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="purelane-hero__eyebrow rv in">{{ section.settings.eyebrow | escape }}</p>
-        {%- endif -%}
-
-        {%- liquid
-          assign heading = section.settings.heading | default: 'Clean / That / Lasts'
-          assign highlighted_word = section.settings.highlighted_word
-        -%}
-        <h1 class="purelane-hero__heading d1 rv in">
-          {%- if highlighted_word != blank and heading contains highlighted_word -%}
-            {%- assign heading_parts = heading | split: highlighted_word -%}
-            {%- assign before_lines = heading_parts[0] | split: '/' -%}
-            {%- for line in before_lines -%}
-              {{ line | strip | escape }}{% unless forloop.last %}<br>{% endunless %}
-            {%- endfor -%}
-            <span class="purelane-hero__highlight lime">{{ highlighted_word | escape }}</span>
-            {%- assign after_lines = heading_parts[1] | split: '/' -%}
-            {%- for line in after_lines -%}
-              {%- assign stripped_line = line | strip -%}
-              {%- if stripped_line != blank -%}<br>{{ stripped_line | escape }}{%- endif -%}
-            {%- endfor -%}
-          {%- else -%}
-            {%- assign all_lines = heading | split: '/' -%}
-            {%- for line in all_lines -%}
-              {{ line | strip | escape }}{% unless forloop.last %}<br>{% endunless %}
-            {%- endfor -%}
-          {%- endif -%}
-        </h1>
-
-        <div class="rule rv rv-d1 in" aria-hidden="true">
-          <i></i>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-          <i></i>
-        </div>
-
-        {%- if section.settings.description != blank -%}
-          <p class="purelane-hero__description lede rv rv-d2 in">{{ section.settings.description | escape }}</p>
-        {%- endif -%}
-
-        <div class="purelane-hero__cta rv rv-d3 in">
-          {%- if section.settings.primary_button_label != blank -%}
-            <a href="{{ section.settings.primary_button_link | default: routes.all_products_collection_url }}" class="btn btn-primary">
-              {{ section.settings.primary_button_label | escape }}
-              {%- if section.settings.primary_button_show_arrow -%}
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
-              {%- endif -%}
-            </a>
-          {%- endif -%}
-          {%- if section.settings.secondary_button_label != blank and section.settings.secondary_button_link != blank -%}
-            <a href="{{ section.settings.secondary_button_link }}" class="btn btn-ghost">{{ section.settings.secondary_button_label | escape }}</a>
-          {%- endif -%}
-        </div>
-
-        {%- if section.settings.trust_text != blank -%}
-          <div class="purelane-hero__trustline rv rv-d4 in">
-            <span class="purelane-hero__avatars" aria-hidden="true">
-              <span class="purelane-hero__avatar">A</span>
-              <span class="purelane-hero__avatar">P</span>
-              <span class="purelane-hero__avatar">R</span>
-              <span class="purelane-hero__avatar">N</span>
-            </span>
-            <span class="purelane-hero__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span>{{ section.settings.trust_text | escape }}</span>
-          </div>
-        {%- endif -%}
-
-        {%- if promise_blocks.size > 0 -%}
-          <div class="badgestrip rv rv-d4 in" aria-label="{{ section.settings.promise_group_label | escape }}">
-            {%- for block in promise_blocks -%}
-              <div class="glass-2" {{ block.shopify_attributes }}>
-                {%- case block.settings.icon -%}
-                  {%- when 'shield' -%}
-                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
-                  {%- when 'ban' -%}
-                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg>
-                  {%- else -%}
-                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-                {%- endcase -%}
-                {{ block.settings.short_label | default: block.settings.label | strip_html | escape }}
-              </div>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+    <div class="badges glass-2" aria-label="{{ section.settings.badges_label | default: 'Product promises' | escape }}">
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+        <span>{{ section.settings.badge_1 | default: 'Plant<br>powered' }}</span>
       </div>
-
-      <div class="purelane-hero__product-wrapper hero-prod" aria-hidden="true">
-        <div class="purelane-hero__art">
-          <span class="purelane-hero__blob"></span>
-          <span class="purelane-hero__sun"></span>
-          <span class="purelane-hero__leaf purelane-hero__leaf--top"></span>
-          <span class="purelane-hero__leaf purelane-hero__leaf--bottom"></span>
-
-          <img
-            src="{{ 'hero-product.png' | asset_url }}"
-            alt=""
-            width="414"
-            height="602"
-            loading="eager"
-            class="purelane-hero__product-image"
-          >
-
-          <div class="purelane-hero__offer">
-            <span>{{ section.settings.offer_label | escape }}</span>
-            <strong>{{ section.settings.offer_price | escape }}</strong>
-            <s>{{ section.settings.offer_compare_price | escape }}</s>
-          </div>
-        </div>
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg></span>
+        <span>{{ section.settings.badge_2 | default: 'Safe for<br>kids &amp; pets' }}</span>
       </div>
-
-      {%- if promise_blocks.size > 0 -%}
-        <div class="purelane-hero__benefits" aria-label="{{ section.settings.promise_group_label | escape }}">
-          {%- for block in promise_blocks -%}
-            <div class="purelane-hero__benefit" {{ block.shopify_attributes }}>
-              <span class="purelane-hero__benefit-icon" aria-hidden="true">
-                {%- case block.settings.icon -%}
-                  {%- when 'paw' -%}
-                    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.7" cy="9" r="2"/><circle cx="11" cy="6.5" r="2"/><circle cx="15.8" cy="8.6" r="2"/><circle cx="18.2" cy="12.6" r="1.8"/><path d="M6.8 18.1c0-3.1 2.6-5.7 5.2-5.7s5.2 2.6 5.2 5.7c0 1.6-1 2.5-2.5 2.1l-1.3-.4a4.8 4.8 0 0 0-2.8 0l-1.3.4c-1.5.4-2.5-.5-2.5-2.1Z"/></svg>
-                  {%- when 'recycle' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8.4 7.1 2.1-3.6 2.3 4"/><path d="M10.6 3.5h4.3c1.1 0 2.1.6 2.6 1.6l1 1.8"/><path d="m18.5 13.2 2.1 3.6h-4.6"/><path d="m20.6 16.8-2.1 3.7c-.5.9-1.5 1.5-2.6 1.5h-2.1"/><path d="M7.1 15.5H3l2.3-4"/><path d="m3 15.5 2.1 3.7c.5.9 1.5 1.5 2.6 1.5h2.1"/></svg>
-                  {%- when 'india' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v4h4"/><path d="M8.5 13h7"/><path d="M12 9v8"/></svg>
-                  {%- else -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-                {%- endcase -%}
-              </span>
-              <span>{{ block.settings.short_label | default: block.settings.label | strip_html | escape }}</span>
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg></span>
+        <span>{{ section.settings.badge_3 | default: 'Zero harsh<br>chemicals' }}</span>
+      </div>
     </div>
+
+    <div class="hero-copy">
+      <h1 class="d1 rv in">{{ section.settings.heading | default: 'Clean<br>That<br><span class="lime">Lasts</span>' }}</h1>
+      <div class="rule rv rv-d1">
+        <i></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <i></i>
+      </div>
+      <p class="lede rv rv-d2">{{ section.settings.body | default: 'Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.' | escape }}</p>
+      <div class="hero-cta rv rv-d3">
+        <a class="btn btn-primary" href="{{ section.settings.primary_button_link | default: '#shop' }}">{{ section.settings.primary_button_label | default: 'Shop now' | escape }}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="{{ section.settings.secondary_button_link | default: '#how' }}">{{ section.settings.secondary_button_label | default: 'How it works' | escape }}</a>
+      </div>
+
+      <div class="badgestrip rv rv-d4">
+        <div class="glass-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+          {{ section.settings.strip_1 | default: 'Plant powered' | escape }}
+        </div>
+        <div class="glass-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
+          {{ section.settings.strip_2 | default: 'Kids & pet safe' | escape }}
+        </div>
+        <div class="glass-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg>
+          {{ section.settings.strip_3 | default: 'Zero harsh chem' | escape }}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-prod" data-purelane-hero-product><div class="hstage" data-purelane-hero-stage><div class="hslide hs1 on" data-n="1" data-purelane-slide data-slide-index="0"><span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">{{ section.settings.slide_1_label | default: 'Single bottle' | escape }}</span><span class="val"><strong>{{ section.settings.slide_1_price | default: '₹200' | escape }}</strong><s>{{ section.settings.slide_1_compare | default: '₹299' | escape }}</s></span><span class="cut">{{ section.settings.slide_1_badge | default: '33% off' | escape }}</span></div></div><div class="hslide hs2" data-n="2" data-purelane-slide data-slide-index="1"><span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span><span class="hp p-kbtl b d2" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">{{ section.settings.slide_2_label | default: 'Any 2 products' | escape }}</span><span class="val"><strong>{{ section.settings.slide_2_price | default: '₹349' | escape }}</strong><s>{{ section.settings.slide_2_compare | default: '₹598' | escape }}</s></span><span class="cut">{{ section.settings.slide_2_badge | default: 'Save ₹249' | escape }}</span></div></div><div class="hslide hs3" data-n="3" data-purelane-slide data-slide-index="2"><span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span><span class="hp p-mbtl b d2" role="img" aria-label="Purelane copper, bronze and brass cleaner pump bottle"></span><span class="hp p-kbtl c d3" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span><div class="glass-2 ptag"><span class="lbl">{{ section.settings.slide_3_label | default: 'Any 3 products' | escape }}</span><span class="val"><strong>{{ section.settings.slide_3_price | default: '₹499' | escape }}</strong><s>{{ section.settings.slide_3_compare | default: '₹897' | escape }}</s></span><span class="cut">{{ section.settings.slide_3_badge | default: 'Save ₹398' | escape }}</span></div></div></div><div class="hdots" data-purelane-hero-dots><button type="button" class="on" aria-label="Show 1 product"></button><button type="button" class="" aria-label="Show 2 products"></button><button type="button" class="" aria-label="Show 3 products"></button></div></div>
+
   </div>
 </section>
-
 {% schema %}
 {
   "name": "Purelane Hero",
   "tag": "section",
   "class": "purelane-hero-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Plant-powered homecare"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Clean / That / Lasts"
-    },
-    {
-      "type": "text",
-      "id": "highlighted_word",
-      "label": "Highlighted word",
-      "default": "Lasts"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it."
-    },
-    {
-      "type": "text",
-      "id": "primary_button_label",
-      "label": "Primary button label",
-      "default": "Shop now"
-    },
-    {
-      "type": "url",
-      "id": "primary_button_link",
-      "label": "Primary button link"
-    },
-    {
-      "type": "checkbox",
-      "id": "primary_button_show_arrow",
-      "label": "Show arrow on primary button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "secondary_button_label",
-      "label": "Secondary button label",
-      "default": "How it works"
-    },
-    {
-      "type": "url",
-      "id": "secondary_button_link",
-      "label": "Secondary button link"
-    },
-    {
-      "type": "text",
-      "id": "trust_text",
-      "label": "Trust text",
-      "default": "Loved by 30,000+ homes"
-    },
-    {
-      "type": "text",
-      "id": "offer_label",
-      "label": "Offer label",
-      "default": "33% OFF"
-    },
-    {
-      "type": "text",
-      "id": "offer_price",
-      "label": "Offer price",
-      "default": "₹200"
-    },
-    {
-      "type": "text",
-      "id": "offer_compare_price",
-      "label": "Offer compare price",
-      "default": "₹299"
-    },
-    {
-      "type": "text",
-      "id": "promise_group_label",
-      "label": "Promise group accessibility label",
-      "default": "Product promises"
-    }
+    { "type": "html", "id": "heading", "label": "Heading", "default": "Clean<br>That<br><span class=\"lime\">Lasts</span>" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it." },
+    { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "Shop now" },
+    { "type": "url", "id": "primary_button_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_button_label", "label": "Secondary button label", "default": "How it works" },
+    { "type": "url", "id": "secondary_button_link", "label": "Secondary button link" },
+    { "type": "text", "id": "badges_label", "label": "Badges accessibility label", "default": "Product promises" },
+    { "type": "html", "id": "badge_1", "label": "Badge 1", "default": "Plant<br>powered" },
+    { "type": "html", "id": "badge_2", "label": "Badge 2", "default": "Safe for<br>kids &amp; pets" },
+    { "type": "html", "id": "badge_3", "label": "Badge 3", "default": "Zero harsh<br>chemicals" },
+    { "type": "text", "id": "strip_1", "label": "Trust strip 1", "default": "Plant powered" },
+    { "type": "text", "id": "strip_2", "label": "Trust strip 2", "default": "Kids & pet safe" },
+    { "type": "text", "id": "strip_3", "label": "Trust strip 3", "default": "Zero harsh chem" },
+    { "type": "header", "content": "Slide 1" },
+    { "type": "text", "id": "slide_1_label", "label": "Label", "default": "Single bottle" },
+    { "type": "text", "id": "slide_1_price", "label": "Price", "default": "₹200" },
+    { "type": "text", "id": "slide_1_compare", "label": "Compare price", "default": "₹299" },
+    { "type": "text", "id": "slide_1_badge", "label": "Badge", "default": "33% off" },
+    { "type": "header", "content": "Slide 2" },
+    { "type": "text", "id": "slide_2_label", "label": "Label", "default": "Any 2 products" },
+    { "type": "text", "id": "slide_2_price", "label": "Price", "default": "₹349" },
+    { "type": "text", "id": "slide_2_compare", "label": "Compare price", "default": "₹598" },
+    { "type": "text", "id": "slide_2_badge", "label": "Badge", "default": "Save ₹249" },
+    { "type": "header", "content": "Slide 3" },
+    { "type": "text", "id": "slide_3_label", "label": "Label", "default": "Any 3 products" },
+    { "type": "text", "id": "slide_3_price", "label": "Price", "default": "₹499" },
+    { "type": "text", "id": "slide_3_compare", "label": "Compare price", "default": "₹897" },
+    { "type": "text", "id": "slide_3_badge", "label": "Badge", "default": "Save ₹398" }
   ],
-  "blocks": [
-    {
-      "type": "promise",
-      "name": "Promise badge",
-      "limit": 4,
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "default": "leaf",
-          "options": [
-            { "value": "leaf", "label": "Leaf" },
-            { "value": "shield", "label": "Shield" },
-            { "value": "ban", "label": "Ban" },
-            { "value": "paw", "label": "Paw" },
-            { "value": "recycle", "label": "Recycle" },
-            { "value": "india", "label": "India" }
-          ]
-        },
-        {
-          "type": "textarea",
-          "id": "label",
-          "label": "Label",
-          "default": "Plant\npowered"
-        },
-        {
-          "type": "text",
-          "id": "short_label",
-          "label": "Mobile label",
-          "default": "Plant powered"
-        }
-      ]
-    },
-    {
-      "type": "slide",
-      "name": "Hero product slide",
-      "limit": 3,
-      "settings": [
-        {
-          "type": "range",
-          "id": "product_count",
-          "label": "Products shown",
-          "min": 1,
-          "max": 3,
-          "step": 1,
-          "default": 1
-        },
-        {
-          "type": "product",
-          "id": "product_1",
-          "label": "Product 1"
-        },
-        {
-          "type": "product",
-          "id": "product_2",
-          "label": "Product 2"
-        },
-        {
-          "type": "product",
-          "id": "product_3",
-          "label": "Product 3"
-        },
-        {
-          "type": "text",
-          "id": "price_label",
-          "label": "Price label",
-          "default": "Single bottle"
-        },
-        {
-          "type": "text",
-          "id": "value_label",
-          "label": "Optional value label override",
-          "info": "Leave blank to calculate savings from product compare-at prices."
-        },
-        {
-          "type": "text",
-          "id": "unavailable_label",
-          "label": "Unavailable label",
-          "default": "Sold out item included"
-        },
-        {
-          "type": "text",
-          "id": "empty_state_label",
-          "label": "Empty product label",
-          "default": "Select products"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Purelane Hero",
-      "blocks": [
-        { "type": "promise", "settings": { "icon": "leaf", "label": "Plant\npowered", "short_label": "Plant powered" } },
-        { "type": "promise", "settings": { "icon": "paw", "label": "Pet\nfriendly", "short_label": "Pet friendly" } },
-        { "type": "promise", "settings": { "icon": "recycle", "label": "Less\nplastic", "short_label": "Less plastic" } },
-        { "type": "promise", "settings": { "icon": "india", "label": "Made in\nIndia", "short_label": "Made in India" } }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Purelane Hero" }]
 }
 {% endschema %}

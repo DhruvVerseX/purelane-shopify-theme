@@ -1,0 +1,39 @@
+{%- if section.settings.show_rail -%}
+  <nav
+    class="rail"
+    aria-label="{{ section.settings.rail_label | default: 'Section progress' | escape }}"
+    data-purelane-section
+    data-section-id="{{ section.id }}"
+    data-section-type="progress-rail"
+    data-purelane-rail
+  >
+    <a href="#top" class="on" aria-label="{{ section.settings.hero_label | default: 'Hero' | escape }}" data-purelane-target="top"></a>
+    <a href="#reviews" aria-label="{{ section.settings.reviews_label | default: 'Reviews' | escape }}" data-purelane-target="reviews"></a>
+    <a href="#ingredients" aria-label="{{ section.settings.ingredients_label | default: 'Ingredients' | escape }}" data-purelane-target="ingredients"></a>
+    <a href="#how" aria-label="{{ section.settings.how_label | default: 'How it works' | escape }}" data-purelane-target="how"></a>
+    <a href="#proof" aria-label="{{ section.settings.proof_label | default: 'Proof' | escape }}" data-purelane-target="proof"></a>
+    <a href="#combos" aria-label="{{ section.settings.combos_label | default: 'Combos' | escape }}" data-purelane-target="combos"></a>
+    <a href="#bundles" aria-label="{{ section.settings.bundles_label | default: 'Bundles' | escape }}" data-purelane-target="bundles"></a>
+    <a href="#shop" aria-label="{{ section.settings.shop_label | default: 'Shop' | escape }}" data-purelane-target="shop"></a>
+  </nav>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Purelane Progress Rail",
+  "tag": "section",
+  "class": "purelane-progress-rail-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_rail", "label": "Show progress rail", "default": true },
+    { "type": "text", "id": "rail_label", "label": "Rail accessibility label", "default": "Section progress" },
+    { "type": "text", "id": "hero_label", "label": "Hero label", "default": "Hero" },
+    { "type": "text", "id": "reviews_label", "label": "Reviews label", "default": "Reviews" },
+    { "type": "text", "id": "ingredients_label", "label": "Ingredients label", "default": "Ingredients" },
+    { "type": "text", "id": "how_label", "label": "How it works label", "default": "How it works" },
+    { "type": "text", "id": "proof_label", "label": "Proof label", "default": "Proof" },
+    { "type": "text", "id": "combos_label", "label": "Combos label", "default": "Combos" },
+    { "type": "text", "id": "bundles_label", "label": "Bundles label", "default": "Bundles" },
+    { "type": "text", "id": "shop_label", "label": "Shop label", "default": "Shop" }
+  ],
+  "presets": [{ "name": "Purelane Progress Rail" }]
+}
+{% endschema %}

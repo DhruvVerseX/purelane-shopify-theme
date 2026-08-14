@@ -1,0 +1,39 @@
+<!-- ================= TICKER ================= -->
+<div
+  class="ticker"
+  aria-hidden="true"
+  data-purelane-section
+  data-section-id="{{ section.id }}"
+  data-section-type="announcement-bar"
+>
+  {%- liquid
+    assign message_1 = section.settings.message_1 | default: 'Free shipping <b>on every bundle across India</b>'
+    assign message_2 = section.settings.message_2 | default: '100% plant-based <b>and non-toxic</b>'
+    assign message_3 = section.settings.message_3 | default: 'Loved by <b>30,000+ happy homes</b>'
+    assign message_4 = section.settings.message_4 | default: 'Buy 3 <b>at flat ₹499</b>'
+  -%}
+  <div class="track">
+    <span>{{ message_1 }}</span>
+    <span>{{ message_2 }}</span>
+    <span>{{ message_3 }}</span>
+    <span>{{ message_4 }}</span>
+    <span>{{ message_1 }}</span>
+    <span>{{ message_2 }}</span>
+    <span>{{ message_3 }}</span>
+    <span>{{ message_4 }}</span>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Purelane Announcement",
+  "tag": "section",
+  "class": "purelane-announcement-section",
+  "settings": [
+    { "type": "html", "id": "message_1", "label": "Message 1", "default": "Free shipping <b>on every bundle across India</b>" },
+    { "type": "html", "id": "message_2", "label": "Message 2", "default": "100% plant-based <b>and non-toxic</b>" },
+    { "type": "html", "id": "message_3", "label": "Message 3", "default": "Loved by <b>30,000+ happy homes</b>" },
+    { "type": "html", "id": "message_4", "label": "Message 4", "default": "Buy 3 <b>at flat ₹499</b>" }
+  ],
+  "presets": [{ "name": "Purelane Announcement" }]
+}
+{% endschema %}

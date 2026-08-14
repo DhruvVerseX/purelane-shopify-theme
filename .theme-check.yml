@@ -2,3 +2,7 @@ MatchingTranslations:
   enabled: false
 TemplateLength:
   enabled: false
+RemoteAsset:
+  allowedDomains:
+    - https://fonts.googleapis.com
+    - https://fonts.gstatic.com

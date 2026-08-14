@@ -125,15 +125,14 @@
           <span class="purelane-hero__leaf purelane-hero__leaf--top"></span>
           <span class="purelane-hero__leaf purelane-hero__leaf--bottom"></span>
 
-          <div class="purelane-hero__mock-bottle">
-            <span class="purelane-hero__mock-cap"></span>
-            <span class="purelane-hero__mock-body">
-              <span class="purelane-hero__mock-label">
-                <span>Purelane</span>
-                <span>Foaming<br>Kitchen<br>Cleaner</span>
-              </span>
-            </span>
-          </div>
+          <img
+            src="{{ 'hero-product.png' | asset_url }}"
+            alt=""
+            width="414"
+            height="602"
+            loading="eager"
+            class="purelane-hero__product-image"
+          >
 
           <div class="purelane-hero__offer">
             <span>{{ section.settings.offer_label | escape }}</span>
